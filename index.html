@@ -212,8 +212,14 @@ function go(id){
 }
 
 function wish(n,t){
-    document.getElementById('name').innerText=n;
-    document.getElementById('text').innerText=t;
+    document.getElementById('name').innerText = n;
+    document.getElementById('text').innerText = t;
+
+    // 👇 reset tarot mỗi lần vào
+    document.getElementById('tarotArea').style.display = "none";
+    document.getElementById('meaning').innerText = "";
+    document.getElementById('card').classList.remove("flip");
+
     go('wish');
 }
 
@@ -306,7 +312,7 @@ function drawTarot(){
 
     // đổi ảnh theo từng lá
     document.querySelector('.card-front').style.background =
-        `url(${r.img}) center/cover`;
+        `url(${r.img}) center/contain no-repeat`;
 
     // đổi glow theo màu
     document.querySelector('.card-front').style.boxShadow =
