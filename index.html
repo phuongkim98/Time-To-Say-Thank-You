@@ -1,9 +1,10 @@
+```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thank You🌸</title>
+<title>Lời Chào Từ Bà T 🌸</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
@@ -39,7 +40,7 @@ body{
 .btn{
     width:100%;
     padding:12px;
-    margin:10px 0;
+    margin:8px 0;
     border:none;
     border-radius:12px;
     background:linear-gradient(135deg,#9b59b6,#8e44ad);
@@ -94,7 +95,7 @@ body{
 }
 
 .card-title{
-    font-size:16px;
+    font-size:15px;
     font-weight:bold;
 }
 
@@ -104,11 +105,13 @@ body{
     color:#ddd;
 }
 
+.glow{
+    animation: glow 1.5s infinite alternate;
+}
 @keyframes glow{
     from{box-shadow:0 0 10px #9b59b6;}
     to{box-shadow:0 0 40px #9b59b6;}
 }
-.glow{animation:glow 1.5s infinite alternate;}
 </style>
 </head>
 
@@ -116,44 +119,63 @@ body{
 
 <div class="container">
 
-<!-- HOME -->
-<div id="home" class="screen active">
-<h2>Bạn hãy chọn team của mình nhé! 😎</h2>
+<!-- STEP 1 -->
+<div id="step1" class="screen active">
+<h2>Bà T. Say Hi 👋</h2>
 <p id="countdown"></p>
 
-<button class="btn" onclick="go('trade')">Team Trade</button>
-<button class="btn" onclick="go('asa')">Team Asa</button>
+<button class="btn" onclick="go('trade-choice')">Team Trade</button>
+<button class="btn" onclick="go('asa-choice')">Team Asa</button>
 </div>
 
 <!-- TRADE -->
-<div id="trade" class="screen">
-<h3>Trade</h3>
-<button class="btn" onclick="wish('Chị Diệp','Chúc chị chốt đơn mỏi tay')">Chị Diệp</button>
-<button class="btn" onclick="wish('Anh Tường','Chúc anh sớm có ny 😏')">Anh Tường</button>
-<button class="btn" onclick="wish('Nhựt Ling','Chúc chị chốt đơn mỏi tay')">Chị Diệp</button>
-<button class="btn" onclick="wish('Chị Phương','Chúc anh sớm có ny 😏')">Anh Tường</button>
-<button class="btn" onclick="wish('Đức','Chúc chị chốt đơn mỏi tay')">Chị Diệp</button>
-<button class="btn" onclick="wish('Nam','Chúc anh sớm có ny 😏')">Anh Tường</button>
-<span class="back" onclick="go('home')">← back</span>
+<div id="trade-choice" class="screen">
+<h3>Team Trade</h3>
+<button class="btn" onclick="go('trade-offline')">Offline</button>
+<button class="btn" onclick="go('trade-online')">Online</button>
+<span class="back" onclick="go('step1')">← back</span>
+</div>
+
+<div id="trade-offline" class="screen">
+<button class="btn" onclick="wish('Chị Diệp','Chúc chị luôn xinh và chốt đơn cháy máy 🔥')">Chị Diệp</button>
+<button class="btn" onclick="wish('Anh Tường','Chúc anh mãi đỉnh như phong độ hiện tại 😎')">Anh Tường</button>
+<button class="btn" onclick="wish('Nhựt Ling','Chúc bà lúc nào cũng vui vẻ nha 😆')">Nhựt Ling</button>
+<button class="btn" onclick="wish('Chị Phương','Chúc chị lúc nào cũng rực rỡ ✨')">Chị Phương</button>
+<button class="btn" onclick="wish('Đức','Chúc ông code không bug 😏')">Đức</button>
+<button class="btn" onclick="wish('Nam','Chúc ông làm đâu trúng đó 💸')">Nam</button>
+<span class="back" onclick="go('trade-choice')">← back</span>
+</div>
+
+<div id="trade-online" class="screen">
+<button class="btn" onclick="wish('Mơ','Chúc bà online nhưng vẫn đỉnh 😎')">Mơ</button>
+<button class="btn" onclick="wish('Chị Trân','Chúc chị luôn nhiều năng lượng 🌟')">Chị Trân</button>
+<button class="btn" onclick="wish('Chị Ánh','Chúc chị lúc nào cũng tỏa sáng ✨')">Chị Ánh</button>
+<span class="back" onclick="go('trade-choice')">← back</span>
 </div>
 
 <!-- ASA -->
-<div id="ASA" class="screen">
-<h3>Asa</h3>
-<button class="btn" onclick="wish('Chị Oanh','Rất vui khi làm cùng bà')">Chị Oanh</button>
-<button class="btn" onclick="wish('Chị Oanh','Rất vui khi làm cùng bà')">Chị Quý</button>
-<button class="btn" onclick="wish('Chị Oanh','Rất vui khi làm cùng bà')">Chi</button>
-<button class="btn" onclick="wish('Chị Oanh','Rất vui khi làm cùng bà')">Hoài</button>
-<button class="btn" onclick="wish('Chị Oanh','Rất vui khi làm cùng bà')">Anh Quang</button>
-<span class="back" onclick="go('home')">← back</span>
+<div id="asa-choice" class="screen">
+<h3>Team Asa</h3>
+<button class="btn" onclick="go('asa-offline')">Offline</button>
+<button class="btn" onclick="go('asa-online')">Online</button>
+<span class="back" onclick="go('step1')">← back</span>
 </div>
 
-<!-- QUIZ -->
-<div id="quiz" class="screen">
-<h3>Hôm nay bạn là ai 🤡</h3>
-<button class="btn" onclick="randomResult()">Bấm để biết</button>
-<p id="quizResult"></p>
-<span class="back" onclick="go('home')">← back</span>
+<div id="asa-offline" class="screen">
+<button class="btn" onclick="wish('Chi','Chúc bà lúc nào cũng chill 😌')">Chi</button>
+<button class="btn" onclick="wish('Chị Oanh','Chúc chị luôn nhiều năng lượng 💪')">Chị Oanh</button>
+<button class="btn" onclick="wish('Hoài','Chúc bà luôn vui vẻ nha 😆')">Hoài</button>
+<button class="btn" onclick="wish('Chị Quý','Chúc chị lúc nào cũng rực rỡ ✨')">Chị Quý</button>
+<button class="btn" onclick="wish('Anh Quang','Chúc anh mãi phong độ 😎')">Anh Quang</button>
+<button class="btn" onclick="wish('Thái','Chúc ông làm đâu thắng đó 💸')">Thái</button>
+<span class="back" onclick="go('asa-choice')">← back</span>
+</div>
+
+<div id="asa-online" class="screen">
+<button class="btn" onclick="wish('Chị Mai','Chúc chị luôn xinh đẹp ✨')">Chị Mai</button>
+<button class="btn" onclick="wish('Chị Thảo','Chúc chị luôn vui vẻ 😄')">Chị Thảo</button>
+<button class="btn" onclick="wish('Chị Huyền','Chúc chị lúc nào cũng năng lượng 🌟')">Chị Huyền</button>
+<span class="back" onclick="go('asa-choice')">← back</span>
 </div>
 
 <!-- WISH -->
@@ -172,13 +194,12 @@ body{
             </div>
         </div>
     </div>
-
     <div id="meaning"></div>
 </div>
 
 <button class="btn" onclick="gift()">🎁 Mở quà</button>
 
-<span class="back" onclick="go('home')">← back</span>
+<span class="back" onclick="go('step1')">← back</span>
 </div>
 
 </div>
@@ -186,21 +207,18 @@ body{
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <script>
-
-// NAV
 function go(id){
     document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
     document.getElementById(id).classList.add('active');
 }
 
-// WISH
 function wish(n,t){
     document.getElementById('name').innerText=n;
     document.getElementById('text').innerText=t;
     go('wish');
 }
 
-// COUNTDOWN
+// countdown
 const end=new Date("2026-04-28").getTime();
 setInterval(()=>{
     let d=end-new Date().getTime();
@@ -208,13 +226,13 @@ setInterval(()=>{
     document.getElementById('countdown').innerText="Còn "+day+" ngày là nghỉ 😏";
 },1000);
 
-// TAROT
+// tarot
 function drawTarot(){
     const data=[
-        {n:"The Salary 💸",t:"Tiền sẽ đến... rồi đi nhanh hơn tốc độ ánh sáng"},
-        {n:"The Deadline 💀",t:"Deadline đang tới nhưng bạn vẫn chill 😏"},
-        {n:"The Drama 🎭",t:"Có drama nhưng bạn chỉ đứng xem"},
-        {n:"The Sleep 😴",t:"Vũ trụ khuyên bạn nên ngủ"},
+        {n:"The Salary 💸",t:"Tiền sẽ đến... rồi đi nhanh hơn ánh sáng"},
+        {n:"The Deadline 💀",t:"Deadline tới nhưng bạn vẫn chill 😏"},
+        {n:"The Drama 🎭",t:"Drama có nhưng bạn chỉ đứng xem"},
+        {n:"The Sleep 😴",t:"Ngủ đi rồi tính tiếp"},
     ];
 
     const r=data[Math.floor(Math.random()*data.length)];
@@ -236,17 +254,16 @@ function drawTarot(){
             meaning.innerText=r.t;
             confetti({particleCount:120,spread:80});
         },400);
-
     },300);
 }
 
-// GIFT
+// gift
 function gift(){
     alert("🎉 Chúc bà nhiều tiền, ít drama!");
     confetti({particleCount:150,spread:100});
 }
-
 </script>
 
 </body>
 </html>
+```
