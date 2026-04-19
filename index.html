@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -121,7 +120,7 @@ body{
 
 <!-- STEP 1 -->
 <div id="step1" class="screen active">
-<h2>Bà T. Say Hi 👋</h2>
+<h2>Bạn hãy chọn team của mình nhé! 👋</h2>
 <p id="countdown"></p>
 
 <button class="btn" onclick="go('trade-choice')">Team Trade</button>
@@ -183,7 +182,7 @@ body{
 <h3 id="name"></h3>
 <p id="text"></p>
 
-<button class="btn" onclick="drawTarot()">🔮 Rút bài Tarot</button>
+<button class="btn" onclick="drawTarot()">🔮 Lá bài tiên tri</button>
 
 <div id="tarotArea" style="display:none;">
     <div id="card" class="tarot-card">
@@ -197,7 +196,7 @@ body{
     <div id="meaning"></div>
 </div>
 
-<button class="btn" onclick="gift()">🎁 Mở quà</button>
+<button class="btn" onclick="gift()">🎁 Lời chúc</button>
 
 <span class="back" onclick="go('step1')">← back</span>
 </div>
@@ -229,11 +228,31 @@ setInterval(()=>{
 // tarot
 function drawTarot(){
     const data=[
-        {n:"The Salary 💸",t:"Tiền sẽ đến... rồi đi nhanh hơn ánh sáng"},
-        {n:"The Deadline 💀",t:"Deadline tới nhưng bạn vẫn chill 😏"},
-        {n:"The Drama 🎭",t:"Drama có nhưng bạn chỉ đứng xem"},
-        {n:"The Sleep 😴",t:"Ngủ đi rồi tính tiếp"},
-    ];
+    {
+        n:"The Salary 💸",
+        t:"Tiền sẽ đến... rồi đi nhanh hơn ánh sáng",
+        img:"https://i.imgur.com/8Km9tLL.png",
+        color:"#2ecc71"
+    },
+    {
+        n:"The Deadline 💀",
+        t:"Deadline tới nhưng bạn vẫn chill 😏",
+        img:"https://i.imgur.com/jTq7GQK.png",
+        color:"#e74c3c"
+    },
+    {
+        n:"The Drama 🎭",
+        t:"Drama có nhưng bạn chỉ đứng xem",
+        img:"https://i.imgur.com/3ZQ3Z6F.png",
+        color:"#9b59b6"
+    },
+    {
+        n:"The Sleep 😴",
+        t:"Ngủ đi rồi tính tiếp",
+        img:"https://i.imgur.com/0y0y0y0.png",
+        color:"#3498db"
+    }
+];
 
     const r=data[Math.floor(Math.random()*data.length)];
 
@@ -247,14 +266,34 @@ function drawTarot(){
     meaning.innerText="";
 
     setTimeout(()=>{
-        name.innerText=r.n;
-        card.classList.add("flip");
+    name.innerText=r.n;
 
-        setTimeout(()=>{
-            meaning.innerText=r.t;
-            confetti({particleCount:120,spread:80});
-        },400);
-    },300);
+    // đổi ảnh theo từng lá
+    document.querySelector('.card-front').style.background =
+        `url(${r.img}) center/cover`;
+
+    // đổi glow theo màu
+    document.querySelector('.card-front').style.boxShadow =
+        `0 0 25px ${r.color}`;
+
+    document.querySelector('.card-back').style.boxShadow =
+        `0 0 30px ${r.color}`;
+
+    card.classList.add("flip");
+
+    setTimeout(()=>{
+        meaning.innerText=r.t;
+
+        // confetti theo màu
+        confetti({
+            particleCount:120,
+            spread:80,
+            colors:[r.color]
+        });
+
+    },400);
+
+},300);
 }
 
 // gift
@@ -266,4 +305,3 @@ function gift(){
 
 </body>
 </html>
-```
