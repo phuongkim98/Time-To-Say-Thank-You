@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lời Chào Từ Bà T 🌸</title>
+<title>Thank You🌸</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
@@ -118,26 +118,33 @@ body{
 
 <!-- HOME -->
 <div id="home" class="screen active">
-<h2>Bà T nghỉ việc 😎</h2>
+<h2>Bạn hãy chọn team của mình nhé! 😎</h2>
 <p id="countdown"></p>
 
 <button class="btn" onclick="go('trade')">Team Trade</button>
 <button class="btn" onclick="go('asa')">Team Asa</button>
-<button class="btn" onclick="go('quiz')">Mini game 🤡</button>
 </div>
 
 <!-- TRADE -->
 <div id="trade" class="screen">
 <h3>Trade</h3>
-<button class="btn" onclick="wish('Chị Lan','Chúc chị chốt đơn mỏi tay')">Chị Lan</button>
-<button class="btn" onclick="wish('Anh Tuấn','Chúc anh sớm có ny 😏')">Anh Tuấn</button>
+<button class="btn" onclick="wish('Chị Diệp','Chúc chị chốt đơn mỏi tay')">Chị Diệp</button>
+<button class="btn" onclick="wish('Anh Tường','Chúc anh sớm có ny 😏')">Anh Tường</button>
+<button class="btn" onclick="wish('Nhựt Ling','Chúc chị chốt đơn mỏi tay')">Chị Diệp</button>
+<button class="btn" onclick="wish('Chị Phương','Chúc anh sớm có ny 😏')">Anh Tường</button>
+<button class="btn" onclick="wish('Đức','Chúc chị chốt đơn mỏi tay')">Chị Diệp</button>
+<button class="btn" onclick="wish('Nam','Chúc anh sớm có ny 😏')">Anh Tường</button>
 <span class="back" onclick="go('home')">← back</span>
 </div>
 
 <!-- ASA -->
-<div id="asa" class="screen">
+<div id="ASA" class="screen">
 <h3>Asa</h3>
-<button class="btn" onclick="wish('Bạn Linh','Rất vui khi làm cùng bà')">Bạn Linh</button>
+<button class="btn" onclick="wish('Chị Oanh','Rất vui khi làm cùng bà')">Chị Oanh</button>
+<button class="btn" onclick="wish('Chị Oanh','Rất vui khi làm cùng bà')">Chị Quý</button>
+<button class="btn" onclick="wish('Chị Oanh','Rất vui khi làm cùng bà')">Chi</button>
+<button class="btn" onclick="wish('Chị Oanh','Rất vui khi làm cùng bà')">Hoài</button>
+<button class="btn" onclick="wish('Chị Oanh','Rất vui khi làm cùng bà')">Anh Quang</button>
 <span class="back" onclick="go('home')">← back</span>
 </div>
 
@@ -200,17 +207,6 @@ setInterval(()=>{
     let day=Math.floor(d/86400000);
     document.getElementById('countdown').innerText="Còn "+day+" ngày là nghỉ 😏";
 },1000);
-
-// QUIZ
-function randomResult(){
-    const list=[
-        "Bạn là: người mở laptop xong không biết làm gì",
-        "Bạn là: người chờ tan làm mỗi 5 phút",
-        "Bạn là: người luôn nói 'để mai làm'",
-        "Bạn là: người sống sót qua mọi deadline"
-    ];
-    document.getElementById('quizResult').innerText=list[Math.floor(Math.random()*list.length)];
-}
 
 // TAROT
 function drawTarot(){
