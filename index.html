@@ -9,28 +9,29 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
 <style>
-:root {
+:root{
     --pink:#ffafcc;
     --deep:#fb6f92;
-    --bg:#f8f9fa;
 }
 
 body{
     font-family:'Segoe UI';
-    background:var(--bg);
+    background: radial-gradient(circle,#1a1a2e,#0f0f1a);
     display:flex;
     justify-content:center;
     align-items:center;
     height:100vh;
+    color:white;
 }
 
 .container{
-    width:90%;max-width:520px;
-    background:white;
+    width:90%;
+    max-width:520px;
+    background:#1a1a2e;
     padding:25px;
     border-radius:25px;
     text-align:center;
-    box-shadow:10px 10px 0 #ffc8dd;
+    box-shadow:0 0 40px rgba(155,89,182,0.4);
 }
 
 .screen{display:none;}
@@ -39,30 +40,31 @@ body{
 .btn{
     width:100%;
     padding:12px;
-    margin:8px 0;
+    margin:10px 0;
     border:none;
     border-radius:12px;
-    background:var(--pink);
+    background:linear-gradient(135deg,#9b59b6,#8e44ad);
     color:white;
     font-weight:bold;
     cursor:pointer;
 }
+.btn:hover{transform:translateY(-2px);}
 
-.btn:hover{background:var(--deep);}
-
-.back{margin-top:10px;display:block;color:#777;cursor:pointer;}
+.back{margin-top:10px;color:#aaa;cursor:pointer;}
 
 /* TAROT */
 .tarot-card{
-    width:120px;height:180px;
-    margin:15px auto;
+    width:160px;
+    height:260px;
+    margin:20px auto;
     perspective:1000px;
 }
 
 .card-inner{
-    width:100%;height:100%;
+    width:100%;
+    height:100%;
     transform-style:preserve-3d;
-    transition:0.8s;
+    transition:1s;
     position:relative;
 }
 
@@ -70,26 +72,44 @@ body{
 
 .card-front,.card-back{
     position:absolute;
-    width:100%;height:100%;
+    width:100%;
+    height:100%;
     border-radius:15px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
     backface-visibility:hidden;
 }
 
 .card-front{
-    background:linear-gradient(135deg,#9b59b6,#8e44ad);
-    color:white;
-    font-size:28px;
+    background:url("https://images.unsplash.com/photo-1604079628346-35d1dce0f0d4?q=80&w=400") center/cover;
+    box-shadow:0 0 25px #9b59b6;
 }
 
 .card-back{
-    background:white;
-    border:2px solid #9b59b6;
     transform:rotateY(180deg);
+    background:#111;
+    border:2px solid #9b59b6;
+    box-shadow:0 0 30px #9b59b6;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
     padding:10px;
 }
+
+.card-title{
+    font-size:16px;
+    font-weight:bold;
+}
+
+#meaning{
+    margin-top:10px;
+    font-size:14px;
+    color:#ddd;
+}
+
+@keyframes glow{
+    from{box-shadow:0 0 10px #9b59b6;}
+    to{box-shadow:0 0 40px #9b59b6;}
+}
+.glow{animation:glow 1.5s infinite alternate;}
 </style>
 </head>
 
@@ -140,11 +160,14 @@ body{
 <div id="tarotArea" style="display:none;">
     <div id="card" class="tarot-card">
         <div class="card-inner">
-            <div class="card-front">🔮</div>
-            <div class="card-back" id="cardName"></div>
+            <div class="card-front glow"></div>
+            <div class="card-back">
+                <div id="cardName" class="card-title"></div>
+            </div>
         </div>
     </div>
-    <p id="cardText"></p>
+
+    <div id="meaning"></div>
 </div>
 
 <button class="btn" onclick="gift()">🎁 Mở quà</button>
@@ -179,7 +202,7 @@ setInterval(()=>{
     document.getElementById('countdown').innerText="Còn "+day+" ngày là nghỉ 😏";
 },1000);
 
-// QUIZ RANDOM
+// QUIZ
 function randomResult(){
     const list=[
         "Bạn là: người mở laptop xong không biết làm gì",
@@ -193,29 +216,33 @@ function randomResult(){
 // TAROT
 function drawTarot(){
     const data=[
-        {n:"The Deadline 💀",t:"Deadline tới nhưng bạn vẫn chill 😏"},
-        {n:"The Salary 💸",t:"Tiền vào rồi ra nhanh hơn tốc độ ánh sáng"},
-        {n:"The Drama 🎭",t:"Drama có nhưng không liên quan bạn"},
-        {n:"The Sleep 😴",t:"Ngủ đi rồi tính tiếp"},
+        {n:"The Salary 💸",t:"Tiền sẽ đến... rồi đi nhanh hơn tốc độ ánh sáng"},
+        {n:"The Deadline 💀",t:"Deadline đang tới nhưng bạn vẫn chill 😏"},
+        {n:"The Drama 🎭",t:"Có drama nhưng bạn chỉ đứng xem"},
+        {n:"The Sleep 😴",t:"Vũ trụ khuyên bạn nên ngủ"},
     ];
 
     const r=data[Math.floor(Math.random()*data.length)];
 
-    let area=document.getElementById('tarotArea');
-    let card=document.getElementById('card');
-    let name=document.getElementById('cardName');
-    let text=document.getElementById('cardText');
+    let area=document.getElementById("tarotArea");
+    let card=document.getElementById("card");
+    let name=document.getElementById("cardName");
+    let meaning=document.getElementById("meaning");
 
-    area.style.display='block';
-    card.classList.remove('flip');
+    area.style.display="block";
+    card.classList.remove("flip");
+    meaning.innerText="";
 
     setTimeout(()=>{
         name.innerText=r.n;
-        card.classList.add('flip');
-        text.innerText=r.t;
+        card.classList.add("flip");
 
-        confetti({particleCount:100,spread:70});
-    },200);
+        setTimeout(()=>{
+            meaning.innerText=r.t;
+            confetti({particleCount:120,spread:80});
+        },400);
+
+    },300);
 }
 
 // GIFT
