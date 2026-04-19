@@ -144,12 +144,21 @@ h1 { color:var(--deep-pink); }
 </div>
 
 <!-- WISH -->
-<div id="wish-screen" class="screen">
-    <h2 id="name"></h2>
-    <p id="wish"></p>
+<div style="margin-top:20px;">
+    <button class="btn" style="background:#9b59b6;" onclick="drawCard()">🔮 Lá bài tiên tri</button>
 
-    <button class="btn" onclick="prophecy()">🔮 Xem tiên tri</button>
-    <div id="prophecy-result"></div>
+    <div id="tarot-area" style="margin-top:20px; display:none;">
+        
+        <div class="tarot-card" id="tarot-card">
+            <div class="card-inner">
+                <div class="card-front">🔮</div>
+                <div class="card-back" id="card-name"></div>
+            </div>
+        </div>
+
+        <div id="tarot-meaning" style="margin-top:15px; font-weight:bold;"></div>
+    </div>
+</div>
 
     <button class="btn" style="background:#ff85a1;" onclick="gift()">🎁 Mở quà</button>
 
