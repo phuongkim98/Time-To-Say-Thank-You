@@ -4,165 +4,152 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thank You 🌸</title>
+<title>Lời Chào Từ Bà T 🌸</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
 <style>
 :root {
-    --primary-pink: #ffafcc;
-    --secondary-pink: #ffc8dd;
-    --deep-pink: #fb6f92;
-    --bg-color: #f8f9fa;
+    --pink:#ffafcc;
+    --deep:#fb6f92;
+    --bg:#f8f9fa;
 }
 
-body {
-    font-family: 'Segoe UI';
-    background: var(--bg-color);
-    background-image: radial-gradient(#ffafcc 0.5px, transparent 0.5px);
-    background-size: 20px 20px;
-    display:flex; justify-content:center; align-items:center;
-    min-height:100vh; margin:0;
+body{
+    font-family:'Segoe UI';
+    background:var(--bg);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
 }
 
-.container {
-    width:90%; max-width:520px;
+.container{
+    width:90%;max-width:520px;
     background:white;
-    padding:30px;
-    border-radius:30px;
-    border:4px solid var(--primary-pink);
-    box-shadow:10px 10px 0 var(--secondary-pink);
+    padding:25px;
+    border-radius:25px;
     text-align:center;
+    box-shadow:10px 10px 0 #ffc8dd;
 }
 
-.screen { display:none; }
-.active { display:block; animation: fadeInUp 0.5s; }
+.screen{display:none;}
+.active{display:block;}
 
-h1 { color:var(--deep-pink); }
-.btn {
-    display:block;
+.btn{
     width:100%;
-    padding:14px;
-    margin:10px 0;
-    background:var(--primary-pink);
-    color:white;
+    padding:12px;
+    margin:8px 0;
     border:none;
-    border-radius:15px;
+    border-radius:12px;
+    background:var(--pink);
+    color:white;
     font-weight:bold;
     cursor:pointer;
-    transition: all 0.2s ease;
-}
-.btn:hover { transform: translateY(-2px); background:var(--deep-pink); }
-
-.back-link {
-    display:inline-block;
-    margin-top:15px;
-    font-size:14px;
-    color:#888;
-    text-decoration:none;
 }
 
-#prophecy-result {
-    margin-top:15px;
+.btn:hover{background:var(--deep);}
+
+.back{margin-top:10px;display:block;color:#777;cursor:pointer;}
+
+/* TAROT */
+.tarot-card{
+    width:120px;height:180px;
+    margin:15px auto;
+    perspective:1000px;
+}
+
+.card-inner{
+    width:100%;height:100%;
+    transform-style:preserve-3d;
+    transition:0.8s;
+    position:relative;
+}
+
+.flip .card-inner{transform:rotateY(180deg);}
+
+.card-front,.card-back{
+    position:absolute;
+    width:100%;height:100%;
+    border-radius:15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    backface-visibility:hidden;
+}
+
+.card-front{
+    background:linear-gradient(135deg,#9b59b6,#8e44ad);
+    color:white;
+    font-size:28px;
+}
+
+.card-back{
+    background:white;
+    border:2px solid #9b59b6;
+    transform:rotateY(180deg);
     padding:10px;
-    border:2px dashed var(--deep-pink);
-    border-radius:10px;
-    background:#fff0f3;
-    font-weight:bold;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container animate__animated animate__fadeIn">
+<div class="container">
 
-<!-- STEP 1 -->
-<div id="step1" class="screen active">
-    <h1>Hello! Bạn hãy chọn đúng team của mình nhe!👋</h1>
+<!-- HOME -->
+<div id="home" class="screen active">
+<h2>Bà T nghỉ việc 😎</h2>
+<p id="countdown"></p>
 
-    <p id="countdown" style="font-weight:bold;color:#fb6f92;"></p>
-
-    <button class="btn" onclick="goToStep('trade-choice')">Team Trade</button>
-    <button class="btn" onclick="goToStep('asa-choice')">Team Asa</button>
-    <button class="btn" onclick="goToStep('quiz')">🎯 Mini Quiz</button>
+<button class="btn" onclick="go('trade')">Team Trade</button>
+<button class="btn" onclick="go('asa')">Team Asa</button>
+<button class="btn" onclick="go('quiz')">Mini game 🤡</button>
 </div>
 
 <!-- TRADE -->
-<div id="trade-choice" class="screen">
-    <h1>Trade Team</h1>
-    <button class="btn" onclick="goToStep('trade-offline')">Offline</button>
-    <button class="btn" onclick="goToStep('trade-online')">Online</button>
-    <a href="javascript:void(0)" class="back-link" onclick="goToStep('step1')">← Quay lại</a>
-</div>
-
-<div id="trade-offline" class="screen">
-    <h1>Trade Offline ☕</h1>
-    <button class="btn" onclick="showWish('Chị Diệp','Chúc chị luôn xinh đẹp và chốt đơn mỏi tay!')">Chị Diệp</button>
-    <button class="btn" onclick="showWish('Anh Tường','Chúc anh nhiều tiền, YEP năm nay được công ty bao vé ra Hà Nội 😏')">Anh Tường</button>
-    <a href="javascript:void(0)" class="back-link" onclick="goToStep('trade-choice')">← Quay lại</a>
-</div>
-
-<div id="trade-online" class="screen">
-    <h1>Trade Online 💻</h1>
-    <button class="btn" onclick="showWish('Team Online','Dù online nhưng vẫn nhớ nhau nhé!')">Xem lời chúc</button>
-    <a href="javascript:void(0)" class="back-link" onclick="goToStep('trade-choice')">← Quay lại</a>
+<div id="trade" class="screen">
+<h3>Trade</h3>
+<button class="btn" onclick="wish('Chị Lan','Chúc chị chốt đơn mỏi tay')">Chị Lan</button>
+<button class="btn" onclick="wish('Anh Tuấn','Chúc anh sớm có ny 😏')">Anh Tuấn</button>
+<span class="back" onclick="go('home')">← back</span>
 </div>
 
 <!-- ASA -->
-<div id="asa-choice" class="screen">
-    <h1>Team Asa</h1>
-    <button class="btn" onclick="goToStep('asa-offline')">Offline</button>
-    <button class="btn" onclick="goToStep('asa-online')">Online</button>
-    <a href="javascript:void(0)" class="back-link" onclick="goToStep('step1')">← Quay lại</a>
-</div>
-
-<div id="asa-offline" class="screen">
-    <h1>Asa Offline</h1>
-    <button class="btn" onclick="showWish('Team Asa','Chúc mọi người luôn đỉnh!')">Xem</button>
-    <a href="javascript:void(0)" class="back-link" onclick="goToStep('asa-choice')">← Quay lại</a>
-</div>
-
-<div id="asa-online" class="screen">
-    <h1>Asa Online 💻</h1>
-    <button class="btn" onclick="showWish('Bạn Linh','Rất vui khi làm việc cùng bà!')">Bạn Linh</button>
-    <a href="javascript:void(0)" class="back-link" onclick="goToStep('asa-choice')">← Quay lại</a>
+<div id="asa" class="screen">
+<h3>Asa</h3>
+<button class="btn" onclick="wish('Bạn Linh','Rất vui khi làm cùng bà')">Bạn Linh</button>
+<span class="back" onclick="go('home')">← back</span>
 </div>
 
 <!-- QUIZ -->
 <div id="quiz" class="screen">
-    <h1>Mini Quiz 😏</h1>
-    <p>T nghĩ sao về việc t nghỉ?</p>
-
-    <button class="btn" onclick="quiz('Sai rồi 😏')">Vì chán</button>
-    <button class="btn" onclick="quiz('Gần đúng 😌')">Vì phát triển</button>
-    <button class="btn" onclick="quiz('Chuẩn luôn 😎')">Vì xứng đáng hơn</button>
-
-    <div id="quiz-result"></div>
-
-    <a href="javascript:void(0)" class="back-link" onclick="goToStep('step1')">← Quay lại</a>
+<h3>Hôm nay bạn là ai 🤡</h3>
+<button class="btn" onclick="randomResult()">Bấm để biết</button>
+<p id="quizResult"></p>
+<span class="back" onclick="go('home')">← back</span>
 </div>
 
 <!-- WISH -->
-<div style="margin-top:20px;">
-    <button class="btn" style="background:#9b59b6;" onclick="drawCard()">🔮 Lá bài tiên tri</button>
+<div id="wish" class="screen">
+<h3 id="name"></h3>
+<p id="text"></p>
 
-    <div id="tarot-area" style="margin-top:20px; display:none;">
-        
-        <div class="tarot-card" id="tarot-card">
-            <div class="card-inner">
-                <div class="card-front">🔮</div>
-                <div class="card-back" id="card-name"></div>
-            </div>
+<button class="btn" onclick="drawTarot()">🔮 Rút bài Tarot</button>
+
+<div id="tarotArea" style="display:none;">
+    <div id="card" class="tarot-card">
+        <div class="card-inner">
+            <div class="card-front">🔮</div>
+            <div class="card-back" id="cardName"></div>
         </div>
-
-        <div id="tarot-meaning" style="margin-top:15px; font-weight:bold;"></div>
     </div>
+    <p id="cardText"></p>
 </div>
 
-    <button class="btn" style="background:#ff85a1;" onclick="gift()">🎁 Mở quà</button>
+<button class="btn" onclick="gift()">🎁 Mở quà</button>
 
-    <a href="javascript:void(0)" class="back-link" onclick="goBack()">← Quay lại</a>
+<span class="back" onclick="go('home')">← back</span>
 </div>
 
 </div>
@@ -170,61 +157,73 @@ h1 { color:var(--deep-pink); }
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <script>
-let prev = 'step1';
 
-function goToStep(id){
+// NAV
+function go(id){
     document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
     document.getElementById(id).classList.add('active');
-    prev = id;
 }
 
-function goBack(){
-    goToStep('step1');
-}
-
-function showWish(name,text){
-    document.getElementById('name').innerText = name;
-    document.getElementById('wish').innerText = text;
-    goToStep('wish-screen');
-}
-
-function prophecy(){
-    const list=[
-        "Tương lai sáng như đèn LED 😆",
-        "Sắp có người bao ăn 😏",
-        "Tiền sắp nhiều lên đó 💸",
-        "Có người thích bà rồi 😌"
-    ];
-    let res=document.getElementById('prophecy-result');
-    res.innerText=list[Math.floor(Math.random()*list.length)];
-    res.classList.add('animate__animated','animate__tada');
-}
-
-function quiz(text){
-    document.getElementById('quiz-result').innerText=text;
-}
-
-function gift(){
-    alert("🎉 Chúc bà luôn vui vẻ, nhiều tiền, ít drama!");
-    confetti({
-        particleCount:150,
-        spread:100
-    });
+// WISH
+function wish(n,t){
+    document.getElementById('name').innerText=n;
+    document.getElementById('text').innerText=t;
+    go('wish');
 }
 
 // COUNTDOWN
-const end = new Date("2026-04-28 17:00:00").getTime();
+const end=new Date("2026-04-28").getTime();
 setInterval(()=>{
-    let now=new Date().getTime();
-    let d=end-now;
-    if(d<0){
-        document.getElementById('countdown').innerText="T nghỉ rồi 😎";
-        return;
-    }
-    let days=Math.floor(d/(1000*60*60*24));
-    let hours=Math.floor((d/(1000*60*60))%24);
-    document.getElementById('countdown').innerText=`⏳ ${days} ngày ${hours} giờ nữa nghỉ`;
+    let d=end-new Date().getTime();
+    let day=Math.floor(d/86400000);
+    document.getElementById('countdown').innerText="Còn "+day+" ngày là nghỉ 😏";
 },1000);
+
+// QUIZ RANDOM
+function randomResult(){
+    const list=[
+        "Bạn là: người mở laptop xong không biết làm gì",
+        "Bạn là: người chờ tan làm mỗi 5 phút",
+        "Bạn là: người luôn nói 'để mai làm'",
+        "Bạn là: người sống sót qua mọi deadline"
+    ];
+    document.getElementById('quizResult').innerText=list[Math.floor(Math.random()*list.length)];
+}
+
+// TAROT
+function drawTarot(){
+    const data=[
+        {n:"The Deadline 💀",t:"Deadline tới nhưng bạn vẫn chill 😏"},
+        {n:"The Salary 💸",t:"Tiền vào rồi ra nhanh hơn tốc độ ánh sáng"},
+        {n:"The Drama 🎭",t:"Drama có nhưng không liên quan bạn"},
+        {n:"The Sleep 😴",t:"Ngủ đi rồi tính tiếp"},
+    ];
+
+    const r=data[Math.floor(Math.random()*data.length)];
+
+    let area=document.getElementById('tarotArea');
+    let card=document.getElementById('card');
+    let name=document.getElementById('cardName');
+    let text=document.getElementById('cardText');
+
+    area.style.display='block';
+    card.classList.remove('flip');
+
+    setTimeout(()=>{
+        name.innerText=r.n;
+        card.classList.add('flip');
+        text.innerText=r.t;
+
+        confetti({particleCount:100,spread:70});
+    },200);
+}
+
+// GIFT
+function gift(){
+    alert("🎉 Chúc bà nhiều tiền, ít drama!");
+    confetti({particleCount:150,spread:100});
+}
+
 </script>
 
 </body>
